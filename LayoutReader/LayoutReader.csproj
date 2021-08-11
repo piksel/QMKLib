@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+    <Import Project="../CommonProps.msbuild" />
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>QMKLib.LayoutReader</RootNamespace>
     </PropertyGroup>
 

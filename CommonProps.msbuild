@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup Condition="'$(Version)' == ''">
+    <Major>0</Major>
+    <Minor>18</Minor>
+    <Patch>1</Patch>
+
+    <Version>$(Major).$(Minor).$(Patch)</Version>
+    <ProductVersion>$(Major).$(Minor).0.$(Patch)</ProductVersion>
+    <AssemblyVersion>$(Major).$(Minor).0.$(Patch)</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>nils måsén</Authors>
+    <RepositoryUrl>https://github.com/piksel/QMKLib</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+      <TargetFramework>net5.0</TargetFramework>
+      <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>

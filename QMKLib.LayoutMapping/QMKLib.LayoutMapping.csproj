@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+    <Import Project="../CommonProps.msbuild" />
+    
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <Nullable>enable</Nullable>
         <RootNamespace>QMKLib.Layout</RootNamespace>
     </PropertyGroup>
 
