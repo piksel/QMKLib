@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutParser", "LayoutParser\LayoutParser.csproj", "{F03C50E6-7C00-4F39-8779-18C1FAB0A4D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QMKLib.LayoutMapping", "QMKLib.LayoutMapping\QMKLib.LayoutMapping.csproj", "{F03C50E6-7C00-4F39-8779-18C1FAB0A4D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutReader", "LayoutReader\LayoutReader.csproj", "{1D6D4E92-84F5-4AC5-BD25-AA170253243F}"
 EndProject
