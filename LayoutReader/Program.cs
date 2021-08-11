@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Antlr4.Runtime.Tree;
 using QMKLib.Layout;
 using static ConLib.PrettyConsole;
 using static ConLib.ConCol;
@@ -24,7 +22,7 @@ namespace QMKLib.LayoutReader
                 var inputFile = args[0];
                 WriteLine($"\nSource: {inputFile}\n");
 
-                LayoutParser parser = null;
+                LayoutParser? parser = null;
                 DoChore("Tokenize", () =>
                 {
                     parser = LayoutParser.FromFile(inputFile);
@@ -38,54 +36,47 @@ namespace QMKLib.LayoutReader
                         parser.LoadLayout();
                     }
                 });
+                
+                foreach (var layout in parser.Layouts)
+                {
+                    var layoutName = layout.Key.StripPrefix("LAYOUT_");
+                    DoChore($"Verify {layoutName}", () => {
 
-
-                    foreach (var layout in parser.Layouts)
+                    var (phyPos, intPos) = layout.Value;
+                    WriteLine($"PHY: {FmtKeyPos(phyPos)}", Cyan);
+                    Write($"     ");
+                    var failed = new List<int>();
+                    foreach (var i in intPos)
                     {
-                        var layoutName = layout.Key.StripPrefix("LAYOUT_");
-                        DoChore($"Verify {layoutName}", () => {
-                        //WriteLine($"Layout {}:");
-                        //PushGroup("layout");
-                        var (phyPos, intPos) = layout.Value;
-                        WriteLine($"PHY: {FmtKeyPos(phyPos)}", Cyan);
-                        Write($"     ");
-                        var failed = new List<int>();
-                        foreach (var i in intPos)
+                        if (phyPos[i] < intPos.Length && intPos[phyPos[i]] == i)
                         {
-                            if (phyPos[i] < intPos.Length && intPos[phyPos[i]] == i)
-                            {
-                                WriteColor("OK ", Green);
-                            }
-                            else
-                            {
-                                WriteColor("!! ", Red);
-                                failed.Add(i);
-                            }
+                            WriteColor("OK ", Green);
                         }
-                        
-                        WriteLine($"");
-                        WriteLine($"INT: {FmtKeyPos(intPos)}", Cyan);
-
-                        if (failed.Any())
+                        else
                         {
-                            WriteLine();
-                            throw new Exception($"{failed.Count} key(s) not equal after roundtrip");
+                            WriteColor("!! ", Red);
+                            failed.Add(i);
                         }
-                        
-                        //PopGroup();
-                        }, continueOnFail: true);
                     }
-                });
-            
-            
-            
-            //WriteColor("Done!", Green);
-            
+                    
+                    WriteLine($"");
+                    WriteLine($"INT: {FmtKeyPos(intPos)}", Cyan);
+
+                    if (failed.Any())
+                    {
+                        WriteLine();
+                        throw new Exception($"{failed.Count} key(s) not equal after roundtrip");
+                    }
+
+                    }, continueOnFail: true);
+                }
+            });
+  
             return 0;
         }
 
-        private static string FmtKeyPos(IEnumerable<int> p) 
-            => string.Join(" ", p.Select(p => $"{p,2}"));
+        private static string FmtKeyPos(IEnumerable<int> ps) 
+            => string.Join(" ", ps.Select(p => $"{p,2}"));
     }
 
     static class StringExtensions

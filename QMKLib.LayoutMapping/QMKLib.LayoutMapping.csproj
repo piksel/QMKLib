@@ -3,6 +3,7 @@
     
     <PropertyGroup>
         <RootNamespace>QMKLib.Layout</RootNamespace>
+        <NoWarn>CS3021</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
