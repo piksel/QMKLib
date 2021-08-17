@@ -23,6 +23,8 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Build (release)
+      run: dotnet build -c release --no-restore
     - name: Pack
       run: dotnet pack -c release -o dist/
     - name: Upload artifacts
