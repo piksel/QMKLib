@@ -6,6 +6,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutReader", "LayoutReade
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QMKLib", "QMKLib\QMKLib.csproj", "{643582D5-5344-4F36-A640-D881AF5B6DC3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9EE3C28E-B22C-4F50-8D54-B432A5C9F2FF}"
+ProjectSection(SolutionItems) = preProject
+	CommonProps.msbuild = CommonProps.msbuild
+	.github\workflows\build-test.yml = .github\workflows\build-test.yml
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

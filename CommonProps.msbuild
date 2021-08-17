@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup Condition="'$(Version)' == ''">
     <Major>0</Major>
-    <Minor>18</Minor>
+    <Minor>2</Minor>
     <Patch>1</Patch>
 
     <Version>$(Major).$(Minor).$(Patch)</Version>
@@ -19,4 +19,23 @@
       <TargetFramework>net5.0</TargetFramework>
       <Nullable>enable</Nullable>
   </PropertyGroup>
+  
+  <!-- SourceLink / NuGet -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+  <!-- / SourceLink / NuGet -->
 </Project>
